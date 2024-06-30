@@ -1,38 +1,66 @@
 .App {
-  text-align: center;
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: #1E2022;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.banner {
+    position: relative;
+    background-image: url('./banner.svg'); /* Update the path to the banner image */
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.banner-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1 {
+    margin-bottom: 20px;
+    font-size: 36px;
 }
 
-.App-link {
-  color: #61dafb;
+p {
+    font-size: 16px;
+    color: #989090;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.recommended-shows {
+    margin-top: -50px;
+}
+
+.events-container {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px;
+    gap: 20px;
+}
+
+.event-card {
+    background: #ffffff;
+    border: 1px solid #B0BABF;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.event-card img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.upcoming-events {
+    padding: 20px;
+}
+
+.loading-spinner {
+    text-align: center;
 }

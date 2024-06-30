@@ -1,0 +1,39 @@
+/* src/components/RecommendedShows.css */
+.recommended-shows {
+    margin: 20px 0;
+    padding: 0 20px;
+}
+
+.recommended-shows h2 {
+    color: #1E2022;
+    font-family: 'Inter', sans-serif;
+}
+
+.recommended-shows .events-container {
+    display: flex;
+    overflow-x: scroll;
+    padding: 10px 0;
+}
+
+.recommended-shows .event-card {
+    flex: 0 0 auto;
+    width: 200px;
+    margin-right: 10px;
+    border: 1px solid #B0BABF;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.recommended-shows .event-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.recommended-shows .event-card h3,
+.recommended-shows .event-card p {
+    margin: 5px 10px;
+    font-family: 'Inter', sans-serif;
+}
