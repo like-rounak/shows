@@ -3,30 +3,27 @@ import './Navbar.css';
 
 const Navbar = () => {
     return (
-        <div className="navbar">
-            <div className="navbar-left">
-                <div className="logo">BookUsNow</div>
-                <div className="location">Mumbai, India</div>
+        <nav className="navbar">
+            <div className="navbar-logo">
+                <h2>BookUsNow</h2>
             </div>
-            <div className="navbar-center">
-                <input type="text" className="search-bar" placeholder="Search" />
-                <div className="categories">Categories</div>
+            <ul className="navbar-menu">
+                <li>Categories</li>
+                <li>Live Shows</li>
+                <li>Streams</li>
+                <li>Movies</li>
+                <li>Plays</li>
+                <li>Events</li>
+                <li>Sports</li>
+                <li>Activities</li>
+            </ul>
+            <div className="navbar-actions">
+                <input type="text" placeholder="Search" />
+                <button>Favorites</button>
+                <button>Sign In</button>
             </div>
-            <div className="navbar-right">
-                <div className="favorites">Favorites</div>
-                <div className="sign-in">Sign In</div>
-            </div>
-            <div className="navbar-bottom">
-                <div className="menu-item">Live Shows</div>
-                <div className="menu-item">Streams</div>
-                <div className="menu-item">Movies</div>
-                <div className="menu-item">Plays</div>
-                <div className="menu-item">Events</div>
-                <div className="menu-item">Sports</div>
-                <div className="menu-item">Activities</div>
-            </div>
-        </div>
+        </nav>
     );
-};
+}
 
 export default Navbar;

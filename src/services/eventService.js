@@ -1,4 +1,3 @@
-// src/services/eventService.js
 import axios from 'axios';
 
 const RECOMMENDED_EVENTS_URL = 'https://gg-backend-assignment.azurewebsites.net/api/Events?code=FOX643kbHEAkyPbdd8nwNLkekHcL4z0hzWBGCd64Ur7mAzFuRCHeyQ==&type=reco';

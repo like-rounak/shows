@@ -1,4 +1,3 @@
-// src/components/UpcomingEvents.js
 import React, { useEffect, useState } from 'react';
 import { fetchUpcomingEvents } from '../services/eventService';
 import './UpcomingEvents.css';
@@ -9,7 +8,7 @@ const UpcomingEvents = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [totalPages, setTotalPages] = useState(5);
-    
+
     useEffect(() => {
         const getEvents = async () => {
             setLoading(true);
@@ -37,7 +36,7 @@ const UpcomingEvents = () => {
 
     const getDirectImageUrl = (url) => {
         const fileId = url.match(/d\/(.*?)\//)?.[1];
-        return `https://drive.google.com/file/d/${fileId}/view?usp=sharing`;
+        return `https://drive.google.com/file/d/${fileId}/preview`;
     };
 
     useEffect(() => {
@@ -58,7 +57,10 @@ const UpcomingEvents = () => {
                     const imageUrl = getDirectImageUrl(event.imgUrl);
                     return (
                         <div key={event.eventName} className="event-card">
-                            <img src={imageUrl} />
+                            <div className="iframe-container">
+                                <iframe src={imageUrl} width="100%" height="150" allow="autoplay"></iframe>
+                                <div className="iframe-overlay"></div>
+                            </div>
                             <h3>{event.eventName}</h3>
                             <p>{event.cityName}</p>
                             <p>{new Date(event.date).toLocaleDateString()}</p>
@@ -70,6 +72,8 @@ const UpcomingEvents = () => {
             </div>
             {loading && <div className="loading-spinner">Loading...</div>}
         </div>
+
+        
     );
 };
 

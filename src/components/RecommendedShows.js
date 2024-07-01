@@ -1,4 +1,3 @@
-// src/components/RecommendedShows.js
 import React, { useEffect, useState } from 'react';
 import { fetchRecommendedEvents } from '../services/eventService';
 import './RecommendedShows.css';
@@ -13,12 +12,7 @@ const RecommendedShows = () => {
             try {
                 const data = await fetchRecommendedEvents();
                 console.log('Recommended Events:', data);
-                // Modify each event's imgUrl to add "?usp=sharing"
-                const modifiedEvents = data.events.map(event => ({
-                    ...event,
-                    imgUrl: `${event.imgUrl}?usp=sharing`
-                }));
-                setEvents(modifiedEvents || []);
+                setEvents(data.events || []);
             } catch (err) {
                 console.error('Error fetching recommended events:', err);
                 setError(err.message);
@@ -28,6 +22,11 @@ const RecommendedShows = () => {
         };
         getEvents();
     }, []);
+
+    const getDirectImageUrl = (url) => {
+        const fileId = url.match(/d\/(.*?)\//)?.[1];
+        return `https://drive.google.com/file/d/${fileId}/preview`;
+    };
 
     if (loading) {
         return <div>Loading...</div>;
@@ -43,9 +42,10 @@ const RecommendedShows = () => {
             <div className="events-container">
                 {events.map(event => {
                     const distanceKm = parseFloat(event.distanceKm);
+                    const imageUrl = getDirectImageUrl(event.imgUrl);
                     return (
                         <div key={event.eventName} className="event-card">
-                            <img src={event.imgUrl} alt={event.eventName} />
+                            <iframe src={imageUrl} width="200" height="200" allow="autoplay" className="iframe-non-interactive"></iframe>
                             <h3>{event.eventName}</h3>
                             <p>{event.cityName}</p>
                             <p>{new Date(event.date).toLocaleDateString()}</p>

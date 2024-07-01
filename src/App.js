@@ -1,16 +1,16 @@
-// src/App.js
 import React from 'react';
 import './App.css';
 import RecommendedShows from './components/RecommendedShows';
 import UpcomingEvents from './components/UpcomingEvents';
+import Navbar from './components/Nav';
 
 function App() {
     return (
         <div className="App">
-            <header className="App-header">
+            <Navbar />
+            {/* <header className="App-header">
                 <h1>BookUsNow</h1>
-                {/* Add navigation, search bar, etc. */}
-            </header>
+            </header> */}
             <div className="banner">
                 <img src="/path/to/banner.svg" alt="Banner" />
                 <div className="banner-text">
