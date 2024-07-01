@@ -1,3 +1,4 @@
+// src/components/RecommendedShows.js
 import React, { useEffect, useState } from 'react';
 import { fetchRecommendedEvents } from '../services/eventService';
 import './RecommendedShows.css';
@@ -23,7 +24,7 @@ const RecommendedShows = () => {
         getEvents();
     }, []);
 
-    const getDirectImageUrl = (url) => {
+    const getIframeUrl = (url) => {
         const fileId = url.match(/d\/(.*?)\//)?.[1];
         return `https://drive.google.com/file/d/${fileId}/preview`;
     };
@@ -42,15 +43,27 @@ const RecommendedShows = () => {
             <div className="events-container">
                 {events.map(event => {
                     const distanceKm = parseFloat(event.distanceKm);
-                    const imageUrl = getDirectImageUrl(event.imgUrl);
+                    const iframeUrl = getIframeUrl(event.imgUrl);
                     return (
                         <div key={event.eventName} className="event-card">
-                            <iframe src={imageUrl} width="200" height="200" allow="autoplay" className="iframe-non-interactive"></iframe>
-                            <h3>{event.eventName}</h3>
-                            <p>{event.cityName}</p>
-                            <p>{new Date(event.date).toLocaleDateString()}</p>
-                            <p>{event.weather}</p>
-                            <p>{distanceKm.toFixed(2)} Km</p>
+                            <iframe 
+                                src={iframeUrl} 
+                                className="event-image" 
+                                allow="autoplay"
+                                style={{ pointerEvents: 'none' }}
+                                frameBorder="0"
+                            />
+                            <div className="event-details">
+                                <h3 className="event-title">{event.eventName}</h3>
+                                <div className="event-location-date">
+                                    <span className="event-location">{event.cityName}</span>
+                                    <span className="event-date">{new Date(event.date).toLocaleDateString()}</span>
+                                </div>
+                                <div className="event-weather-distance">
+                                    <span>{event.weather}</span>
+                                    <span>{distanceKm.toFixed(0)} Km</span>
+                                </div>
+                            </div>
                         </div>
                     );
                 })}

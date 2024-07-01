@@ -1,3 +1,4 @@
+// src/components/UpcomingEvents.js
 import React, { useEffect, useState } from 'react';
 import { fetchUpcomingEvents } from '../services/eventService';
 import './UpcomingEvents.css';
@@ -34,7 +35,7 @@ const UpcomingEvents = () => {
         }
     };
 
-    const getDirectImageUrl = (url) => {
+    const getIframeUrl = (url) => {
         const fileId = url.match(/d\/(.*?)\//)?.[1];
         return `https://drive.google.com/file/d/${fileId}/preview`;
     };
@@ -54,26 +55,34 @@ const UpcomingEvents = () => {
             <div className="events-container">
                 {events.map(event => {
                     const distanceKm = parseFloat(event.distanceKm);
-                    const imageUrl = getDirectImageUrl(event.imgUrl);
+                    const iframeUrl = getIframeUrl(event.imgUrl);
                     return (
                         <div key={event.eventName} className="event-card">
-                            <div className="iframe-container">
-                                <iframe src={imageUrl} width="100%" height="150" allow="autoplay"></iframe>
-                                <div className="iframe-overlay"></div>
+                            <iframe 
+                            src={iframeUrl} 
+                            className="event-image" 
+                            allow="autoplay"
+                            style={{ pointerEvents: 'none' }}
+                            frameBorder="0"
+                            />
+                            <div className="event-details">
+                                <div className="event-date">{new Date(event.date).toLocaleDateString()}</div>
+                                <h3>{event.eventName}</h3>
+                                <div className="event-location-weather">
+                                    <span className="event-location">{event.cityName}</span>
+                                    <span className="event-weather-distance">
+                                        <span>{event.weather}</span>
+                                        <span> | </span>
+                                        <span>{distanceKm.toFixed(0)} Km</span>
+                                    </span>
+                                </div>
                             </div>
-                            <h3>{event.eventName}</h3>
-                            <p>{event.cityName}</p>
-                            <p>{new Date(event.date).toLocaleDateString()}</p>
-                            <p>{event.weather}</p>
-                            <p>{distanceKm.toFixed(2)} Km</p>
                         </div>
                     );
                 })}
             </div>
             {loading && <div className="loading-spinner">Loading...</div>}
         </div>
-
-        
     );
 };
 

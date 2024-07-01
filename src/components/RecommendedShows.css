@@ -1,42 +1,72 @@
 .recommended-shows {
-    margin: 20px 0;
-    padding: 0 20px;
+    padding: 20px;
 }
 
 .recommended-shows h2 {
-    color: #1E2022;
     font-family: 'Inter', sans-serif;
+    color: white;
+    margin-bottom: 20px;
 }
 
 .recommended-shows .events-container {
     display: flex;
-    overflow-x: scroll;
-    padding: 10px 0;
+    overflow-x: auto;
+    gap: 20px;
 }
 
 .recommended-shows .event-card {
-    flex: 0 0 auto;
-    width: 200px;
-    margin-right: 10px;
-    border: 1px solid #B0BABF;
+    position: relative;
+    width: 300px;
+    height: 400px;
     border-radius: 10px;
-    overflow: hidden;
-    background-color: #ffffff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
-.recommended-shows .event-card iframe {
+.recommended-shows .event-image {
     width: 100%;
-    height: 200px;
+    height: 100%;
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transform:scale(1.25);
 }
 
-.recommended-shows .event-card h3,
-.recommended-shows .event-card p {
-    margin: 5px 10px;
+.recommended-shows .event-details {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.recommended-shows .event-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    margin: 0;
+    font-size: 18px;
+}
+
+.recommended-shows .event-location-date,
+.recommended-shows .event-weather-distance {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    margin-top: 5px;
+}
+
+.recommended-shows .event-location,
+.recommended-shows .event-date,
+.recommended-shows .event-weather,
+.recommended-shows .event-distance {
     font-family: 'Inter', sans-serif;
 }
-
-.iframe-non-interactive iframe {
-    pointer-events: none;
-}
-
